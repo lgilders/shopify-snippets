@@ -1,0 +1,66 @@
+<ul class="blog-categories-desktop">
+    <li class="categories-title">Categories:</li>
+    {% for link in linklists.blog-menu.links %} {% comment %} navigation menu handle name goes here {% endcomment %}
+        <li class="{% if link.active %}link-active{% endif %}">
+            <a href="{{ link.url }}">{{ link.title }}</a>
+            <div class="spacer {% if link.active %}active{% endif %}"></div>
+        </li>
+    {% endfor %}
+</ul>
+
+<div class="blog-categories-mobile">
+    <span class="categories-title">Categories:</span>
+    <select id="blog-categories-filter">
+        {% for link in linklists.blog-menu.links %} {% comment %} navigation menu handle name goes here {% endcomment %}
+            {% if link.active %}
+                <option value="{{ link.url }}" selected>{{ link.title }}</option>
+            {% else %}
+                <option value="{{ link.url }}">{{ link.title }}</option>
+            {% endif %}
+        {% endfor %}
+    </select>
+</div>
+
+<script>
+var loadScript = function(url, callback){
+  var script = document.createElement("script")
+      script.type = "text/javascript";
+ 
+    if (script.readyState){  //IE
+        script.onreadystatechange = function(){
+            if (script.readyState == "loaded" ||
+                    script.readyState == "complete"){
+                script.onreadystatechange = null;
+                callback();
+            }
+        };
+    } else {  //Others
+        script.onload = function(){
+            callback();
+        };
+    }
+ 
+    script.src = url;
+    document.getElementsByTagName("head")[0].appendChild(script);
+};
+
+var blogFilters = function($) {
+  $('#blog-categories-filter').on('change', function() {
+        var url = $(this).val();
+
+        if (url) {
+            window.location = url;
+        }
+        return false;
+    });
+};
+
+if ((typeof jQuery === 'undefined') || (parseFloat(jQuery.fn.jquery) < 1.7)) {
+  loadScript('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', function() {
+      jQuery191 = jQuery.noConflict(true);
+      blogFilters(jQuery191);
+  });
+} else {
+  blogFilters(jQuery);
+}
+</script>
