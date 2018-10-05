@@ -29,5 +29,5 @@ __Note:__ For an All Posts category link, you must directly type in the URL link
     {% endif %}
 {% endfor %}
 ```
-__Note:__ The if statement and the displayTag variable code can be modified to match whatever custom, known preface used.
+__Note:__ The if statement and the displayTag variable code can be modified to match whatever custom, known preface is used.
 
