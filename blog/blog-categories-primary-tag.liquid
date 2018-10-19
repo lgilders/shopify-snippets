@@ -1,0 +1,7 @@
+{% comment %} Display Primary Tag for a Blog Post {% endcomment %}
+{% for tag in article.tags %}
+    {% if tag contains 'primary-tag:' %}
+        {% capture displayTag %} {{ tag | slice: 13, 50 }} {% endcapture %}
+        <a href="{{ blog.url }}/tagged/{{ displayTag | handle }}" class="category-tag">{{ displayTag }}</a>
+    {% endif %}
+{% endfor %}
