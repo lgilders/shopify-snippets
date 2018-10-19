@@ -1,0 +1,13 @@
+{%- if section.settings.announcement_bar_enabled -%}
+<div id="header-announcement">
+    {%- if section.settings.announcement_bar_home_page_only == false or template.name == 'index' -%}
+    {%- if section.settings.announcement_bar_link != blank -%}
+        <a href="{{ section.settings.announcement_bar_link }}">
+        {{ section.settings.announcement_bar_text | escape }}
+        </a>
+    {%- else -%}
+        <p>{{ section.settings.announcement_bar_text | escape }}</p>
+    {%- endif -%}
+    {%- endif -%}
+</div>
+{%- endif -%}

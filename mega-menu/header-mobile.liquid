@@ -1,0 +1,51 @@
+<header role="banner" id="header-mobile" class="clearfix">
+    {% comment %} Mobile Menu Toggle {% endcomment %}
+    <a href="#main-menu-mobile" 
+       id="mobile-menu-toggle"
+       role="button"
+       class="menu-toggle"
+       aria-controls="main-menu-mobile"
+       aria-label="Open main menu">
+       <span class="sr-only">Open main menu</span>
+      {% include 'icon-mobile_menu' %}
+    </a>
+
+    {% comment %} Mobile Search Form {% endcomment %}
+    <a href="#mobile-search-form" id="mobile-search-link" class="search-link menu-toggle" aria-controls="mobile-search-form"
+       aria-label="Open search form">{% include 'icon-search' %}</a>
+
+    {% comment %} Mobile Logo {% endcomment %}
+    {% if template.name == 'index' %}
+      <h1 class="mobile-logo">
+    {% else %}
+      <div class="h1 mobile-logo">
+    {% endif %}
+        <a href="/" class="logo-image">
+          {% if section.settings.logo != blank %}
+            {% capture image_size %}{{ section.settings.logo_mobile_max_width }}x{% endcapture %}
+            <img src="{{ section.settings.logo_mobile | img_url: image_size }}"
+                srcset="{{ section.settings.logo_mobile | img_url: image_size }} 1x, {{ section.settings.logo_mobile | img_url: image_size, scale: 2 }} 2x"
+                alt="{{ section.settings.logo_mobile.alt | default: shop.name }}">
+          {% else %}
+            {{ shop.name }}
+          {% endif %}
+        </a>
+    {% if template.name == 'index' %}
+      </h1>
+    {% else %}
+      </div>
+    {% endif %}
+
+    {% comment %} Mobile Cart Link {% endcomment %}
+    <a href="/cart" class="cart">
+        {% if cart.item_count > 0 %}
+          {% include 'icon-cart-full_mobile' %}
+          <div class="count">
+            {{ cart.item_count }}
+          </div>
+        {% else %}
+          {% include 'icon-cart-empty_mobile' %}
+        {% endif %}
+    </a>
+
+  </header>

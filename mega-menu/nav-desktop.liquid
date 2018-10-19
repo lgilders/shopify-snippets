@@ -1,0 +1,33 @@
+<nav role="navigation" id="nav-desktop" class="clearfix">
+    {% comment %} Desktop Navigation {% endcomment %}
+    <ul class="primary">
+      {% for link in linklists[section.settings.menu].links %}
+        {% if link.links != blank %}
+          <li class="has-submenu">
+            <a href="{{ link.url }}">
+              {{ link.title }}
+            </a>
+            <ul class="secondary">
+              {% for childlink in link.links %}
+                <li>
+                  <a href="{{ childlink.url }}">
+                    {% unless childlink.title contains 'Shop All' %}
+                    {% capture image %}illustration-{{ childlink.title | handleize }}.png{% endcapture %}
+                      <img src="{{ image | file_img_url: '125x' }}" class="link-image" alt="{{ childlink.title | escape }}">
+                    {% endunless %}
+                    <div>{{ childlink.title }}</div>
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          </li>
+        {% else %}
+          <li>
+            <a href="{{ link.url }}">
+              {{ link.title }}
+            </a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+</nav>

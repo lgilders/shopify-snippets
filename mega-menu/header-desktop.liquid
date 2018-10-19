@@ -1,0 +1,78 @@
+<header role="banner" id="header-desktop" class="clearfix">
+    {% comment %} Desktop Search Form {% endcomment %}
+    <div class="search">
+      <form action="/search" method="get" role="search">
+        <label for="Search" class="label-hidden">
+          {{ 'general.search.placeholder' | t }}
+        </label>
+
+        <input type="search"
+          name="q"
+          id="Search"
+          value="{{ search.terms | escape }}"
+          placeholder="{{ 'general.search.placeholder' | t }}"
+          class="tk-brandon-grotesque">
+
+        <button type="submit" class="button">
+          {% include 'icon-search_inside' %}
+          <span class="icon-fallback-text">{{ 'general.search.submit' | t }}</span>
+        </button>
+        <div class="ajax-search-results"></div>
+      </form>
+    </div>
+
+    {% comment %} Desktop Logo {% endcomment %}
+    {% if template.name == 'index' %}
+      <h1 class="desktop-logo">
+    {% else %}
+      <div class="h1 desktop-logo">
+    {% endif %}
+        <a href="/" class="logo-image">
+          {% if section.settings.logo != blank %}
+            {% capture image_size %}{{ section.settings.logo_max_width }}x{% endcapture %}
+            <img src="{{ section.settings.logo | img_url: image_size }}"
+                srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
+                alt="{{ section.settings.logo.alt | default: shop.name }}">
+          {% else %}
+            {{ shop.name }}
+          {% endif %}
+        </a>
+    {% if template.name == 'index' %}
+      </h1>
+    {% else %}
+      </div>
+    {% endif %}
+
+    {% comment %} Desktop Links {% endcomment %}
+    <div class="right-links">
+      {% comment %} Desktop My Account Link {% endcomment %}
+      {% if shop.customer_accounts_enabled %}
+        <ul class="account-links">
+          {% if customer %}
+            <li>
+              <a href="/account">{{ 'layout.customer.account' | t }}</a>
+            </li>
+            <li class="logout">
+              {{ 'layout.customer.log_out' | t | customer_logout_link }}
+            </li>
+          {% else %}
+            <li>
+              {{ 'layout.customer.log_in' | t | customer_login_link }}
+            </li>
+          {% endif %}
+        </ul>
+      {% endif %}
+
+      {% comment %} Desktop Cart Link {% endcomment %}
+      <a href="/cart" class="cart">
+        {% if cart.item_count > 0 %}
+          {% include 'icon-cart-full' %}
+          <div class="count">
+            {{ cart.item_count }}
+          </div>
+        {% else %}
+          {% include 'icon-cart-empty' %}
+        {% endif %}
+      </a>
+    </div>
+</header>

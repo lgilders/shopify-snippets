@@ -14,3 +14,6 @@ This repo contains partials and instructions for several common features added t
 ### Blog Categories/Filters
 Currently Shopify's built-in blog does not have a way to handle adding a "category" filter to blog posts. This section of snippets/documentation provides the illusion of WordPress-like category structure using Shopify's native tags.
 
+### Mega Menu
+Built with Shopify's native Navigation, this mega menu contains the bare bones for a standard site navigation and header, along with DOM for including custom images per sub-link title.
+

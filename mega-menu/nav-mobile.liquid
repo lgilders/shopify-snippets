@@ -1,0 +1,64 @@
+<nav id="main-menu-mobile" role="navigation" class="main-menu clearfix" aria-label="Main menu">
+    {% comment %} Mobile Search Form {% endcomment %}
+    <div id="mobile-search-form" class="search">
+      <form action="/search" method="get" role="search">
+        <label for="mobile-search" class="label-hidden">
+          {{ 'general.search.placeholder' | t }}
+        </label>
+
+        <input type="search"
+          name="q"
+          id="mobile-search"
+          value="{{ search.terms | escape }}"
+          placeholder="{{ 'general.search.placeholder' | t }}"
+          class="tk-brandon-grotesque">
+
+        <button type="submit" class="button">
+          {% include 'icon-search_inside' %}
+          <span class="icon-fallback-text">{{ 'general.search.submit' | t }}</span>
+        </button>
+        <div class="ajax-search-results"></div>
+      </form>
+    </div>
+
+    {% comment %} Mobile Nav Links {% endcomment %}
+    <ul class="primary clearfix">
+      {% for link in linklists[section.settings.menu].links %}
+        {% if link.links != blank %}
+          <li class="accordion-group">
+            <a href="{{ link.url }}">
+              {{ link.title }}
+            </a>
+            <div class="accordion-open-close"><span class="horizontal"></span><span class="vertical"></span></div>
+            <ul class="secondary item-container">
+              {% for childlink in link.links %}
+                <li>
+                  <a href="{{ childlink.url }}">
+                    {% unless childlink.title contains 'Shop All' %}
+                    {% capture image %}illustration-{{ childlink.title | handleize }}.png{% endcapture %}
+                      <img src="{{ image | file_img_url: '250x' }}" class="link-image" alt="{{ childlink.title | escape }}">
+                    {% endunless %}
+                    <div>{{ childlink.title }}</div>
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          </li>
+        {% else %}
+          <li>
+            <a href="{{ link.url }}">
+              {{ link.title }}
+            </a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+
+</nav>
+
+{% comment %} Mobile Nav Overlay {% endcomment %}
+<a href="#main-menu-toggle"
+     class="backdrop"
+     tabindex="-1"
+     aria-hidden="true" hidden>
+</a>
