@@ -1,7 +1,8 @@
-#Blog Categories/Filters
+# Blog Categories/Filters
 Currently Shopify's built-in blog does not have a way to handle adding a "category" filter to blog posts. 
 
-#### User Case 1: How to Add Blog Categories/Filters
+# Implementation
+#### How to Add Blog Categories/Filters
 1. Copy the blog-categories.liquid file to the theme's snippet folder.
 2. Include the snippet on the blog list page (usually the blog.liquid template) with {% include 'blog-categories' %}.
 3. Create a new Navigation menu with the handle blog-menu. (If you use a different name/handle, update the handle references in the blog-categories.liquid file.) 
@@ -13,7 +14,7 @@ __Note:__ For an All Posts category link, you must directly type in the URL link
 6. Style the desktop and mobile versions of the displayed categories/filters.
 
 
-#### Use Case 1b: Display a particular tag as the "primary" filter tag on the blog list page.
+#### Display a particular tag as the "primary" filter tag on the blog list page.
 1. Add a custom tag to each blog post with a known preface, e.g., primary-tag::filter name.
 2. On the blog list page (usually the blog.liquid template), determine where you want to display the primary filter tag for the article.
 3. Add the following code to target the primary-tag:: filter and display it with a link to the correct category/filter.
@@ -27,8 +28,8 @@ __Note:__ For an All Posts category link, you must directly type in the URL link
 ```
 __Note:__ The if statement and the displayTag variable code can be modified to match whatever custom, known preface used.
 
-#Documentation
-##Customize Blog Hub Navigation Menu
+# Documentation
+## Customize Blog Hub Navigation Menu
 1. Log into your Shopify site via the [partners page](https://partners.shopify.com/).
 2. In the left-hand rail, select Online Store.
 3. In the left-hand rail, select Navigation.
