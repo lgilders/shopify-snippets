@@ -1,0 +1,230 @@
+{% comment %} Hero Section {% endcomment %}
+<section id="hero">
+
+    {% comment %} Clickable Banner {% endcomment %}
+    {% if section.settings.clickable_banner %}<a href="{{ section.settings.cta_url }}" id="clickable-banner">{% endif %}
+        
+        {% comment %} Image Overlay {% endcomment %}
+        {% if section.settings.overlay %}<div id="image-overlay"></div>{% endif %}
+        
+        {% comment %} Background Images {% endcomment %}
+        {% assign desktop_img = section.settings.desktop_image | img_url: "1680x" %}
+        {% assign mobile_img = section.settings.desktop_image | img_url: "740x" %}
+        
+        {% if section.settings.mobile_image %}
+            {% assign mobile_img = section.settings.mobile_image | img_url: "740x" %}
+        {% endif %}
+        
+        {% comment %} Mobile Image {% endcomment %}
+        <div id="hero-mobile" style="background-image: url( {{ mobile_img }} )"
+            data-src="{{ desktop_img }}" data-src-mobile="{{ mobile_img }}"></div>
+        
+        {% comment %} Desktop Image {% endcomment %}
+        <div id="hero-desktop" style="background-image: url( {{ desktop_img }} )"
+            data-src="{{ desktop_img }}" data-src-mobile="{{ mobile_img }}"></div>
+        
+        {% comment %} Banner Content {% endcomment %}
+        <div id="hero-content" class="{{ section.settings.text_position }} {{ section.settings.text_align }}">
+            {% comment %} Headline {% endcomment %}
+            <h1 style="color: {{ section.settings.headline_color }}">{{ section.settings.headline }}</h1>
+
+            {% comment %} Subheading {% endcomment %}
+            <h2 style="color: {{ section.settings.subheading_color }}">{{ section.settings.subheading }}</h2>
+            
+            {% comment %} CTA Button {% endcomment %}
+            {% if section.settings.cta_button %}
+                <a href="{{ section.settings.cta_url }}">
+                    <button style="color: {{ section.settings.button_text_color }}; border-color: {{ section.settings.button_color }}">{{ section.settings.button_text }}</button>
+                </a>
+            {% endif %}
+        </div>
+
+    {% comment %} Clickable Banner {% endcomment %}
+    {% if section.settings.clickable_banner %}</a>{% endif %}
+</section>
+
+{% comment %} Hero Custom Styles {% endcomment %}
+<style>
+    #hero-content button:hover {
+        border-color: {{ section.settings.button_color_hover }};
+        color: {{ section.settings.buton_text_color_hover }};
+    }
+</style>
+
+{% schema %}
+    {
+        "name": "Hero",
+        "class": "index-section section-flush",
+        "settings": [
+            {
+                "type": "header",
+                "content": "Images"
+            },
+            {
+                "type": "image_picker",
+                "id": "desktop_image",
+                "label": "Desktop Image",
+                "info": "Required"
+            },
+            {
+                "type": "image_picker",
+                "id": "mobile_image",
+                "label": "Mobile Image",
+                "info": "Optional"
+            },
+            {
+                "type": "checkbox",
+                "id": "overlay",
+                "label": "Add an overlay to the image",
+                "info": "If selected, a slightly darker overlay will be added to the image to allow for better text readability.",
+                "default": false
+            },
+            {
+                "type": "checkbox",
+                "id": "clickable_banner",
+                "label": "Allow the entire banner to be clickable",
+                "default": false
+            },
+            {
+                "type": "header",
+                "content": "Text"
+            },
+            {
+                "type": "select",
+                "id": "text_position",
+                "label": "Text Position",
+                "options": [
+                    {
+                        "label": "Top Left",
+                        "value": "position-top-left"
+                    },
+                    {
+                        "label": "Top Center",
+                        "value": "position-top-center"
+                    },
+                    {
+                        "label": "Top Right",
+                        "value": "position-top-right"
+                    },
+                    {
+                        "label": "Center Left",
+                        "value": "position-center-left"
+                    },
+                    {
+                        "label": "Center Center",
+                        "value": "position-center-center"
+                    },
+                    {
+                        "label": "Center Right",
+                        "value": "position-center-right"
+                    },
+                    {
+                        "label": "Bottom Left",
+                        "value": "position-bottom-left"
+                    },
+                    {
+                        "label": "Bottom Center",
+                        "value": "position-bottom-center"
+                    },
+                    {
+                        "label": "Bottom Right",
+                        "value": "position-bottom-right"
+                    }
+                ],
+                "default": "position-center-center"
+            },
+            {
+                "type": "select",
+                "id": "text_align",
+                "label": "Text Alignment",
+                "options": [
+                    {
+                        "label": "Left",
+                        "value": "text-align-left"
+                    },
+                    {
+                        "label": "Center",
+                        "value": "text-align-center"
+                    },
+                    {
+                        "label": "Right",
+                        "value": "text-align-right"
+                    }
+                ],
+                "default": "text-align-center"
+            },
+            {
+                "type": "text",
+                "id": "subheading",
+                "label": "Subheading Text"
+            },
+            {
+                "type": "color",
+                "id": "subheading_color",
+                "label": "Subheader Color",
+                "default": "#ffffff"
+            },
+            {
+                "type": "text",
+                "id": "headline",
+                "label": "Headline Text"
+            },
+            {
+                "type": "color",
+                "id": "headline_color",
+                "label": "Headline Color",
+                "default": "#ffffff"
+            },
+            {
+                "type": "header",
+                "content": "CTA Button"
+            },
+            {
+                "type": "checkbox",
+                "id": "cta_button",
+                "label": "Display CTA button?",
+                "default": true
+            },
+            {
+                "type": "text",
+                "id": "button_text",
+                "label": "Button Text"
+            },
+            {
+                "type": "color",
+                "id": "button_text_color",
+                "label": "Button Text Color",
+                "default": "#ffffff"
+            },
+            {
+                "type": "color",
+                "id": "button_text_color_hover",
+                "label": "Button Text Color on Hover",
+                "default": "#000000"
+            },
+            {
+                "type": "url",
+                "id": "cta_url",
+                "label": "CTA URL"
+            },
+            {
+                "type": "color",
+                "id": "button_color",
+                "label": "Button Outline Color",
+                "default": "#ffffff"
+            },
+            {
+                "type": "color",
+                "id": "button_color_hover",
+                "label": "Button Outline Color on Hover",
+                "default": "#000000"
+            }
+        ],
+        "presets": [
+            {
+                "name": "Hero",
+                "category": "Index"
+            }
+        ]
+    }
+{% endschema %}

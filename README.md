@@ -10,3 +10,6 @@ Built with Shopify's native Navigation, this mega menu contains the bare bones f
 
 ### Buy More, Save More Script
 Built with Shopify's Script Editor app, this custom line item script checks the value of the items in the cart and implements a percentage discount based on that value. One version requires a discount code and the other does not.
+
+### Hero Section
+Built to work with Shopify's new Sections for Homepages, this same setup can be modified to fit other theme requirements.
