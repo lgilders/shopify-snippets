@@ -16,3 +16,6 @@ Built to work with Shopify's new Sections for Homepages, this same setup can be 
 
 ### Free Shipping Script
 Built with Shopify's Script Editor app, this custom shipping script looks for a specific shipping service and updates its cost to $0. One version requires a discount code and the other does not.
+
+### Re-Sorting Products on PLP
+Currently Shopify does not include a way to sort products to display New products first and Sold Out products last on the collection page. This snippet will ONLY work for collections that contain 50 or fewer products. This is due to a Shopify built-in hard limit to avoid over-taxing its databases.

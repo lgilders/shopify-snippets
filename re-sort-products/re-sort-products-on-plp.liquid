@@ -1,0 +1,65 @@
+{% comment %} Insert this snippet where the collection.products for loop is used to display the products on the PLP.
+            Update the check for 'Sold Out' to use product.available if disallowing negative product quantity. 
+            Update the check for 'New' / 'Brand New' tags as needed. {% endcomment %}
+
+<section class="collection_grid">
+
+{% comment %} Re-sort products to order it by New, Regular, and Sold Out {% endcomment %}
+{% assign unsortedProducts = collection.products | reverse | reverse %}
+
+{% for product in unsortedProducts %}
+	{% assign sliceIndex = forloop.index0 %}
+	{% assign productToSort = unsortedProducts | slice: sliceIndex, 1 %}
+	{% assign product_available = product.available %}
+    
+	{% if product.tags contains 'Sold Out' %}
+		{% assign product_available = false %}
+	{% endif %}
+
+	{% if product_available %}
+		{% if product.tags contains "New" or product.tags contains "Brand New" %}
+			{% if newProducts.size == 0 %}
+				{% assign newProducts = productToSort %}
+			{% else %}
+				{% assign newProducts = newProducts | concat: productToSort %}
+			{% endif %}
+		{% else %}
+			{% if availableProducts.size == 0 %}
+				{% assign availableProducts = productToSort %}
+			{% else %}
+				{% assign availableProducts = availableProducts | concat: productToSort %}
+			{% endif %}
+		{% endif %}
+	{% else %}
+		{% if unavailableProducts.size == 0 %}
+			{% assign unavailableProducts = productToSort %}
+		{% else %}
+			{% assign unavailableProducts = unavailableProducts | concat: productToSort %}
+		{% endif %}
+	{% endif %}
+{% endfor %}
+
+{% comment %} Build sorted products list {% endcomment %}
+{% assign sortedProducts = collection.products | reverse | reverse %}
+
+{% if unavailableProducts.size > 0 and availableProducts.size > 0 %}
+	{% assign sortedProducts = availableProducts | concat: unavailableProducts %}
+{% endif %}
+
+{% if availableProducts.size > 0 and newProducts.size > 0 %}
+	{% assign sortedProducts = newProducts | concat: availableProducts %}
+{% endif %}
+
+{% if unavailableProducts.size > 0 and availableProducts.size > 0 and newProducts.size > 0 %}
+	{% assign sortedProducts = newProducts | concat: availableProducts | concat: unavailableProducts %}
+{% endif %}
+
+{% comment %} Display sorted products with pagination {% endcomment %}
+{% paginate collection.products by 16 %}
+	{% for product in collection.products %}
+		{% assign sortedProductsIndex = paginate.current_offset | plus: forloop.index0 %}
+		{% include 'grid_item--product', product: sortedProducts[sortedProductsIndex] %}
+	{% endfor %}
+{% endpaginate %}
+
+</section>
