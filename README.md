@@ -13,3 +13,6 @@ Built with Shopify's Script Editor app, this custom line item script checks the 
 
 ### Hero Section
 Built to work with Shopify's new Sections for Homepages, this same setup can be modified to fit other theme requirements.
+
+### Free Shipping Script
+Built with Shopify's Script Editor app, this custom shipping script looks for a specific shipping service and updates its cost to $0. One version requires a discount code and the other does not.
