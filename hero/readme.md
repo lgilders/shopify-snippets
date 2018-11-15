@@ -1,5 +1,5 @@
 # Hero Section
-Built with Shopify's native Navigation, this mega menu contains the bare bones for a standard site navigation and header, along with DOM for including custom images per sub-link title.
+Built to work with Shopify's new Sections for Homepages, this same setup can be modified to fit other theme requirements.
 
 ## Implementation
 1. Add the hero.liquid file to the sections folder in the site's theme. 
