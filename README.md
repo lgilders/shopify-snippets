@@ -19,3 +19,6 @@ Built with Shopify's Script Editor app, this custom shipping script looks for a 
 
 ### Re-Sorting Products on PLP
 Currently Shopify does not include a way to sort products to display New products first and Sold Out products last on the collection page. This snippet will ONLY work for collections that contain 50 or fewer products. This is due to a Shopify built-in hard limit to avoid over-taxing its databases.
+
+### Identifying User by IP Address
+This liquid snippet can be included on any page and will display a modal if a user's IP location is one of those identified. For this example, the country codes are for Taiwan, Hong Kong, and China. This snippet requires an account with ipstack.com in order to get an access key. See ipstack.com for a complete set of documentation.

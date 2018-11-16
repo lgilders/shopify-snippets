@@ -1,0 +1,25 @@
+{% comment %} Display a modal if a user's IP address matches a particular country {% endcomment %}
+<div id="modal" class="hidden">
+    <div class="close-btn" onclick="closeModal()">X</div>
+</div>
+
+<script>
+// Check user's location and display a message if from Taiwan, China, or Hong Kong
+jQuery.ajax({
+  url: 'https://api.ipstack.com/check?access_key=IP_STACK_ACCOUNT_ACCESS_KEY_GOES_HERE'
+})
+  .done(function( data ) {
+      var $modal = $('#modal');
+      var country = data.country_name;
+
+      if (country === 'Hong Kong' || country === 'China' || country === 'Taiwan') {
+          $modal.removeClass('hidden');
+      }
+  });
+
+function closeModal() {
+    var $modal = $('#modal');
+
+    $modal.addClass('hidden');
+}
+</script>
