@@ -11,3 +11,5 @@ For collection pages a design may call for using a Load More button to ajax the 
 6. Open the templates/collection.js file.
 7. Add a line to load the button's behavior.
     * If this file does not yet exist, copy the collection.js file into the scripts/templates folder.
+
+__Note:__ The JavaScript implementation directions are set up for the Slate framework. For the Themekit framework, copy/paste the contents of ajax-load-more-button.js into the bottom of the collection.liquid file and wrap it in <script></script> tags.
