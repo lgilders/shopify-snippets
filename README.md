@@ -22,3 +22,6 @@ Currently Shopify does not include a way to sort products to display New product
 
 ### Identifying User by IP Address
 This liquid snippet can be included on any page and will display a modal if a user's IP location is one of those identified. For this example, the country codes are for Taiwan, Hong Kong, and China. This snippet requires an account with ipstack.com in order to get an access key. See ipstack.com for a complete set of documentation.
+
+### Ajax Load More Button
+For collection pages a design may call for using a Load More button to ajax the next page of products onto the existing page, rather than using the traditional pagination provided by Shopify. This snippet and accompanying script implement this behavior.

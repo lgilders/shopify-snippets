@@ -1,0 +1,8 @@
+{% comment %} Insert snippet prior to {% endpaginate %}  {% endcomment %}
+{% if paginate.next %}
+    <div class="pagination">
+        <a class="load-more-button" href="{{ paginate.next.url }}">Load More</a>
+        
+        <div class="loading-icon spinner" style="display: none;"></div>
+    </div>
+{% endif %}
