@@ -25,3 +25,6 @@ This liquid snippet can be included on any page and will display a modal if a us
 
 ### Ajax Load More Button
 For collection pages a design may call for using a Load More button to ajax the next page of products onto the existing page, rather than using the traditional pagination provided by Shopify. This snippet and accompanying script implement this behavior.
+
+### Ad Spot Insert for Collection Page
+For collection pages a design may call for using adminable ad spots. This snippet describes how a single spot can be inserted; however, in most cases, clients will want two or more spots. 

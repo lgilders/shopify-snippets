@@ -1,0 +1,35 @@
+{% comment %}
+
+  Takes the following arguments:
+
+  - sub_collection_handle: The handle of the subcollection that will be iterated over
+
+{% endcomment %}
+
+<div class="collection-product-grid">
+    {% for product in collections[sub_collection_handle].products %}
+
+      {% comment %}
+      Namespace value: ad_spots
+      Available metafields:
+        show_ad_spot - true to display ad, false to hide ad
+        ad_spot_placement - INTEGER value required
+        ad_spot_url - full url link
+        ad_spot_image - permanent CDN link to image stored in admin/files
+        ad_spot_header - text
+      {% endcomment %}
+      {% if collection.metafields.ad_spots.show_ad_spot == "true" %}
+        {% if forloop.index == collection.metafields.ad_spots.ad_spot_placement %}
+          <a href="{{ collection.metafields.ad_spots.ad_spot_url }}" class="collection-ad-spot" style="background-image: url( {{ collection.metafields.ad_spots.ad_spot_image }} )">
+            <div class="ad-spot-header">{{ collection.metafields.ad_spots.ad_spot_header }}</div>
+          </a>
+        {% endif %}
+      {% endif %}
+
+      {% include 'product-grid-item' with {
+        product: current_product,
+        breadcrumb_sub_collection: collections[sub_collection_handle]
+      } %}
+
+    {% endfor %}
+</div>
