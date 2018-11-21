@@ -1,0 +1,47 @@
+<section class="featured-products">
+    <h2>{{ section.settings.headline }}</h2>
+
+    <div class="featured-products-grid">
+        {% for block in section.blocks %}
+            {% comment %} Update the snippet to match the appropriate one for your theme, e.g., product-card-grid {% endcomment %}
+            {% include 'product-grid-item' with {
+                product: all_products[block.settings.featured_product]]
+            } %}
+        {% endfor %}
+    </div>
+</section>
+
+{% schema %}
+    {
+        "name": "Featured Products",
+        "class": "index-section section-flush",
+        "max_blocks": 4,
+        "settings": [
+                {
+                    "type": "text",
+                    "id": "headline",
+                    "label": "Headline",
+                    "default": "Featured Products"
+                }
+            ],
+        "blocks": [
+            {
+                "type": "featured-product",
+                "name": "Product",
+                "settings": [
+                    {
+                        "type": "product",
+                        "id": "featured_product",
+                        "label": "Featured Product"
+                    }
+                ]
+            }
+        ],
+        "presets": [
+            {
+            "name": "Featured Products Section",
+            "category": "Index"
+            }
+        ]
+    }
+{% endschema %}

@@ -28,3 +28,6 @@ For collection pages a design may call for using a Load More button to ajax the 
 
 ### Ad Spot Insert for Collection Page
 For collection pages a design may call for using adminable ad spots. This snippet describes how a single spot can be inserted; however, in most cases, clients will want two or more spots. 
+
+### Fetured Products Section
+Built to work with Shopify's new Sections for Homepages, this custom section will display up a selection of featured products.
