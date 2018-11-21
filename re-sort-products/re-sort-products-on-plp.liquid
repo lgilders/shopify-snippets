@@ -58,7 +58,8 @@
 {% paginate collection.products by 16 %}
 	{% for product in collection.products %}
 		{% assign sortedProductsIndex = paginate.current_offset | plus: forloop.index0 %}
-		{% include 'grid_item--product', product: sortedProducts[sortedProductsIndex] %}
+		{% comment %} Update the snippet to match the appropriate one for your theme, e.g., product-card-grid {% endcomment %}
+		{% include 'product-grid-item', product: sortedProducts[sortedProductsIndex] %}
 	{% endfor %}
 {% endpaginate %}
 
