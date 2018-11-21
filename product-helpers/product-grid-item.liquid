@@ -1,0 +1,54 @@
+{% comment %}
+
+  Takes the following arguments:
+
+  - product: The product that will be used
+
+{% endcomment %}
+
+<div class="product">
+    {% if product.featured_image != blank %}
+        <a class="product-image" href="{{ product.url | within: collection }}">
+        <img class="featured-image" src="{{ product.featured_image | img_url: '700x800' }}" alt="{{ product.title | escape }}">
+        {% if product.images.size > 1 %}
+            <img class="secondary-image" src="{{ product.images[1] | img_url: '700x800' }}" alt="{{ product.images[1].alt | escape }}">
+        {% endif %}
+        </a>
+    {% endif %}
+
+    <p class="product-title">
+        <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
+    </p>
+
+    <p class="product-price {% if product.price_varies %}sale-price{% endif %}">
+        {% if product.compare_at_price > product.price %}
+
+            {% if product.price_varies %}
+                {%- assign sale_price = product.price | money -%}
+                {{ sale_price }}
+            {% else %}
+                {{ product.price | money }}
+            {% endif %}
+
+        {% else %}
+
+            {% if product.price_varies %}
+                {%- assign price = product.price | money -%}
+                {{ 'products.product.from_text_html' | t: price: price }}
+            {% else %}
+                {{ product.price | money }}
+            {% endif %}
+
+        {% endif %}
+
+        {% if product.compare_at_price > product.price %}
+            <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
+            <s>{{ product.compare_at_price | money }}</s>
+            <span class="sale-notice">{{ 'products.product.sale_notice' | t }}</span>
+        {% endif %}
+
+        {% unless product.available %}
+            {{ 'products.product.sold_out' | t }}
+        {% endunless %}
+    </p>
+</div>
