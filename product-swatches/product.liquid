@@ -1,0 +1,21 @@
+{% comment %} Example for including swatch for color variant options {% endcomment %}
+
+{% if product.available and product.variants.size > 1 %}
+ {% include 'swatch' with 'Color' %}
+{% endif %}
+
+
+{% comment %} Example for including swatch as button for size variant options {% endcomment %}
+
+{% if product.available and product.variants.size > 1 %}
+ {% include 'swatch' with 'Size' %}
+{% endif %}
+
+
+{% comment %} Example for both types of variant options {% endcomment %}
+
+{% if product.available and product.variants.size > 1 %}
+  {% for option in product.options %}
+    {% include 'swatch' with option %}
+  {% endfor %}
+{% endif %}

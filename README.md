@@ -31,3 +31,7 @@ For collection pages a design may call for using adminable ad spots. This snippe
 
 ### Fetured Products Section
 Built to work with Shopify's new Sections for Homepages, this custom section will display up a selection of featured products.
+
+### Add Swatches to Product
+Rather than using a third-party app, add swatches to products via these code changes. See this [documentation](https://help.shopify.com/en/themes/customization/products/features/add-color-swatches) for more information.
+
