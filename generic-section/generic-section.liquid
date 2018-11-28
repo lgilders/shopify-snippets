@@ -1,0 +1,69 @@
+<div id="generic-section">
+    {% for block in section.blocks %}
+        <div class="generic-block">
+            <img src="{{ block.settings.image | img_url: 'master' }}" alt="{{ block.settings.image_alt_text }}" />
+            <h1>{{ block.settings.headline }}</h1>
+            <h3>{{ block.settings.subheading }}</h3>
+            <p>{{ block.settings.description }}</p>
+            <a href="{{ block.settings.cta_link }}">{{ block.settings.cta_text }}</a>
+        </div>
+    {% endfor %}
+</div>
+
+{% schema %}
+{
+  "name": "Generic Section",
+  "class": "index-section section-flush",
+  "max_blocks": 3,
+  "settings": [],
+  "blocks": [
+    {
+      "type": "block",
+      "name": "Content Block",
+      "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "text",
+        "id": "image_alt_text",
+        "label": "Image Alt Text"
+      },
+      {
+          "type": "text",
+          "id": "headline",
+          "label": "Headline"
+      },
+      {
+          "type": "text",
+          "id": "subheading",
+          "label": "Subheading"
+      },
+      {
+          "type": "text",
+          "id": "description",
+          "label": "Description"
+      },
+      {
+          "type": "text",
+          "id": "cta_text",
+          "label": "CTA Text"
+      },
+      {
+          "type": "url",
+          "id": "cta_link",
+          "label": "CTA Link"
+      }
+    ]
+  }
+  ],
+  "presets": [
+    {
+    "name": "Generic Section",
+    "category": "Index"
+    }
+  ]
+  }
+{% endschema %}

@@ -35,3 +35,5 @@ Built to work with Shopify's new Sections for Homepages, this custom section wil
 ### Add Swatches to Product
 Rather than using a third-party app, add swatches to products via these code changes. See this [documentation](https://help.shopify.com/en/themes/customization/products/features/add-color-swatches) for more information.
 
+### Generic Section
+Built to work with Shopify's new Sections for Homepages, this snippet can be adjusted to display a number of blocks of data. Duplicate the section and adjust it as needed.
