@@ -46,3 +46,6 @@ For the collections page, this snippet will add filtering behavior based on prod
 
 ### Add Sorting
 For the collections page, this snippet will add sorting behavior. See this [documentation](https://help.shopify.com/en/themes/customization/collections/add-sort-order-menu) for more information.
+
+### Blog Article Social Sharing
+This snippet adds social sharing links to each blog article for Facebook, Twitter, Pinterest, a generic link, and to send an email.

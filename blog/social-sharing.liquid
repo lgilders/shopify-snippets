@@ -1,0 +1,31 @@
+<div class="social-sharing">
+    <label>Share</label>
+
+    <a target="_blank" href="//www.facebook.com/sharer.php?u={{ shop.url | append: share_permalink }}" title="Share by Facebook">
+        {% include 'icon-facebook' %}
+        <span aria-hidden="true">{{ 'general.social.share_on_facebook' | t }}</span>
+        <span class="visually-hidden">{{ 'general.social.alt_text.share_on_facebook' | t }}</span>
+    </a>
+
+    <a target="_blank" href="//twitter.com/share?text={{ share_title | url_param_escape }}&amp;url={{ shop.url | append: share_permalink }}" title="Share by Twitter">
+        {% include 'icon-twitter' %}
+        <span aria-hidden="true">{{ 'general.social.share_on_twitter' | t }}</span>
+        <span class="visually-hidden">{{ 'general.social.alt_text.share_on_twitter' | t }}</span>
+    </a>
+
+    <a target="_blank" href="//pinterest.com/pin/create/button/?url={{ shop.url | append: share_permalink }}&amp;media={{ share_image | img_url: '1024x1024' }}&amp;description={{ share_title | url_param_escape }}" title="Share by Pinterest">
+        {% include 'icon-pinterest' %}
+        <span aria-hidden="true">{{ 'general.social.share_on_pinterest' | t }}</span>
+        <span class="visually-hidden">{{ 'general.social.alt_text.share_on_pinterest' | t }}</span>
+    </a>
+
+    <a class="share-email" title="Share by Link">
+        <input readonly type="text" value="{{ shop.url }}{{ product.url }}">
+        {% include 'icon-share-email' %}
+        <div class="copied">Link Copied to Clipboard!</div>
+    </a>
+
+    <a class="mail-to" href="mailto:?subject=Check it out&body={{ shop.secure_url }}{{ article.url }}" title="Share by Email">
+        {% include 'icon-mail_to' %}
+    </a>
+</div>
