@@ -1,0 +1,23 @@
+.reveal .hidden { display: block !important; visibility: visible !important;}
+
+.product:hover .reveal img { opacity: 1; }
+
+.reveal { position: relative; }
+
+.reveal .hidden { 
+  position: absolute; 
+  z-index: -1;
+  top: 0; 
+  width: 100%; 
+  height: 100%;  
+  opacity: 0;
+  -webkit-transition: opacity 0.3s ease-in-out;
+  -moz-transition: opacity 0.3s ease-in-out;
+  -o-transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;  
+}
+
+.reveal:hover .hidden { 
+  z-index: 10; // Update this value if necessary
+  opacity: 1;    
+}

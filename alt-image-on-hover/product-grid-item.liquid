@@ -1,0 +1,4 @@
+<div class="reveal">
+  <img src="{{ featured.featured_image.src | img_url: 'large' }}" alt="{{ featured.featured_image.alt | escape }}"><!-- this is the original image tag -->
+  <img class="hidden" src="{{ product.images.last | img_url: 'large' }}" alt="{{ product.images.last.alt | escape }}" /><!-- this is the alternate image tag -->
+</div>

@@ -37,3 +37,6 @@ Rather than using a third-party app, add swatches to products via these code cha
 
 ### Generic Section
 Built to work with Shopify's new Sections for Homepages, this snippet can be adjusted to display a number of blocks of data. Duplicate the section and adjust it as needed.
+
+### Add a Secondary Hover Image
+For the collections page, this snippet will add a second image to be used on image hover. See this [documentation](https://help.shopify.com/en/themes/customization/collections/add-hover-effect-to-product-images) for more information.
