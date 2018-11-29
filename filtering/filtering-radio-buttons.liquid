@@ -1,0 +1,51 @@
+<ul class="subnav clearfix">
+  <li {% unless current_tags %} class="active"{% endunless %}>
+    {% if collection.handle %}
+        <a href="/collections/{{ collection.handle }}{% if collection.sort_by %}?sort_by={{ collection.sort_by }}{% endif %}">All</a>
+    {% elsif collection.current_type %}
+        <a href="{{ collection.current_type | url_for_type | sort_by: collection.sort_by }}">All</a>
+    {% elsif collection.current_vendor %}
+        <a href="{{ collection.current_vendor | url_for_vendor | sort_by: collection.sort_by }}">All</a>
+    {% endif %}
+  </li>
+
+  {% for tag in collection.all_tags %}
+    {% if current_tags contains tag %}
+        <li class="active"> {{ tag | link_to_remove_tag: tag }} </li>
+    {% else %}
+        <li> {{ tag | link_to_tag: tag }} </li>
+    {% endif %}
+  {% endfor %}
+</ul>
+
+<style>
+    /* Contain floats: nicolasgallagher.com/micro-clearfix-hack/ */
+    .clearfix:before, .clearfix:after { content: ""; display: table; }
+
+    .clearfix:after { clear: both; }
+
+    .clearfix { zoom: 1; }
+
+    /* Subnavigation styles */
+    .subnav { clear: both; list-style-type: none; margin: 35px 0; padding: 0; }
+
+    .subnav li { display: block; float: left; }
+
+    .subnav li a {
+        display: block;
+        height: 28px;
+        line-height: 28px;
+        padding: 0 7px;
+        -webkit-border-radius: 7px;
+        -moz-border-radius: 7px;
+        border-radius: 7px;
+        background: #eee;
+        margin: 0 7px 7px 0;
+        color: #666;
+    }
+
+    .subnav li a:hover, .subnav li.active a {
+        background: #666;
+        color: #fff;
+    }
+</style>

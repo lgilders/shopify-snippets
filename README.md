@@ -40,3 +40,6 @@ Built to work with Shopify's new Sections for Homepages, this snippet can be adj
 
 ### Add a Secondary Hover Image
 For the collections page, this snippet will add a second image to be used on image hover. See this [documentation](https://help.shopify.com/en/themes/customization/collections/add-hover-effect-to-product-images) for more information.
+
+### Add Filtering
+For the collections page, this snippet will add filtering behavior based on product tags. See this [documentation](https://help.shopify.com/en/themes/customization/collections/filter-collections-with-product-tags) for more information.

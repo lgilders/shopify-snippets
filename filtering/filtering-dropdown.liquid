@@ -1,0 +1,14 @@
+<div class="clearfix filter">
+   <p>Browse by tag:</p>
+
+   <select class="coll-filter">
+     <option value="">All</option>
+     {% for tag in collection.all_tags %}
+        {% if current_tags contains tag %}
+            <option value="{{ tag | handle }}" selected>{{ tag }}</option>
+        {% else %}
+            <option value="{{ tag | handle }}">{{ tag }}</option>
+        {% endif %}
+     {% endfor %}
+   </select>
+</div>
