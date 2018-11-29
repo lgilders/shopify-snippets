@@ -43,3 +43,6 @@ For the collections page, this snippet will add a second image to be used on ima
 
 ### Add Filtering
 For the collections page, this snippet will add filtering behavior based on product tags. See this [documentation](https://help.shopify.com/en/themes/customization/collections/filter-collections-with-product-tags) for more information.
+
+### Add Sorting
+For the collections page, this snippet will add sorting behavior. See this [documentation](https://help.shopify.com/en/themes/customization/collections/add-sort-order-menu) for more information.
