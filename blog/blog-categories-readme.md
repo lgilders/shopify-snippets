@@ -1,5 +1,5 @@
 # Blog Categories/Filters
-Currently Shopify's built-in blog does not have a way to handle adding a "category" filter to blog posts. 
+Currently Shopify's built-in blog does not have a way to handle adding a "category" filter to blog posts. This section of snippets/documentation provides the illusion of WordPress-like category structure using Shopify's native tags.
 
 # Implementation
 #### How to Add Blog Categories/Filters
@@ -28,6 +28,7 @@ __Note:__ For an All Posts category link, you must directly type in the URL link
 ```
 __Note:__ The if statement and the displayTag variable code can be modified to match whatever custom, known preface used.
 
+
 # Documentation
 ## Customize Blog Hub Navigation Menu
 1. Log into your Shopify site via the [partners page](https://partners.shopify.com/).
@@ -40,6 +41,7 @@ __Note:__ The if statement and the displayTag variable code can be modified to m
   * To include an All posts collection, create a nav item with an appropriate collection name and use the url of the blog, e.g., /blogs/blog-name.
   * When referencing the blog directly, you must type out the URL, not use the built-in page selector.
 6. Save changes.
+
 
 ##Tag Blog Post to Include in a Collection
 1. Log into your Shopify site via the [partners page](https://partners.shopify.com/).
