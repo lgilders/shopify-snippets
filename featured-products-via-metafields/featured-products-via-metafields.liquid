@@ -1,0 +1,14 @@
+{% assign product_count = 4 %}
+{% assign featured_products = article.metafields.featured_products %}
+
+<section class="featured-products">
+    <h2 class="title">{{ blog_recommendations.title }}</h2>
+    <div class="products">
+        {% for i in (1..product_count) %}
+            {% assign product_handle = 'product_' | append: i %}
+            {% if featured_products[product_handle] %}
+                {% include 'product-grid-item', product: all_products[featured_products[product_handle]] %}
+            {% endif %}
+        {% endfor %}
+    </div>
+</section>

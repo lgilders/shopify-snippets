@@ -49,3 +49,9 @@ For the collections page, this snippet will add sorting behavior. See this [docu
 
 ### Blog Article Social Sharing
 This snippet adds social sharing links to each blog article for Facebook, Twitter, Pinterest, a generic link, and to send an email. See this [documentation](https://help.shopify.com/en/themes/customization/social-media/adding-social-media-buttons) for more information.
+
+### Initialize Mobile Slider
+This script provides an example of a slider that initializes at mobile resolutions only. See this [documentation](http://kenwheeler.github.io/slick/) for more information. 
+
+### Featured Products Managed via Metafields
+Because the new Sections only work for the Homepage, this snippet allows for metafield-adminable content on other pages, such as blog articles or collection list pages.
