@@ -9,6 +9,10 @@ __Note:__ The metafields namespace and key values are hardcoded. To display diff
 3. Save changes.
 
 
+## Other Requirements
+By default, this code will display up to 4 products. It also requires the use of a product-helper file to display the product information. The theme may already have one in the snippets folder, e.g., product-grid-item.liquid, product-card-grid.liquid, grid-item__product.liquid, etc. If the theme lacks one of these helpers, see the product-helpers folder for several options.
+
+
 ## Documentation
 ### Using a Featured Products Section on a Page Template
 1. Log into your Shopify site via the [partners page](https://partners.shopify.com/).
