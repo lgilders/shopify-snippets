@@ -1,0 +1,42 @@
+{%- assign faqs = product.metafields.faqs -%} {% comment %} Update page where metafields are stored. {% endcomment %}
+{%- assign faqs_count = 7 -%} {% comment %} Update variable to the maximum number of viable options. {% endcomment %}
+
+{% if faqs.headline %} {% comment %} Section is only displayed if a headline is available. {% endcomment %}
+<section id="faqs">
+    <h3>{{ faqs.headline }}</h3>
+    
+    <div class="contents">
+        {% for i in (1..faqs_count) %}
+            {%- assign question = 'question' | append: i -%}
+            {%- assign answer = 'answer' | append: i -%}
+            
+            {% if faqs[question] %}            
+            <div class="toggle">
+                <div class="toggle-title clearfix">
+                    <h5 class="title-name"><span>{{ faqs[question] }}</span><i></i></h5> {% comment %} Add an icon snippet to the <i></i>, if necessary. {% endcomment %}
+                </div>
+                <div class="toggle-inner">
+                    <p>{{ faqs[answer] }}</p>
+                </div>
+            </div>
+            {% endif %}
+
+        {% endfor %} 
+    </div>
+</section>
+{% endif %}
+
+<script>
+if( $(".toggle .toggle-title").hasClass('active') ) {
+    $(".toggle .toggle-title.active").closest('.toggle').find('.toggle-inner').show();
+}
+
+$(".toggle .toggle-title").click(function () {
+    if( $(this).hasClass('active') ){
+        $(this).removeClass("active").closest('.toggle').find('.toggle-inner').slideUp(200);
+    }
+    else{
+        $(this).addClass("active").closest('.toggle').find('.toggle-inner').slideDown(200);
+    }
+});
+</script>
