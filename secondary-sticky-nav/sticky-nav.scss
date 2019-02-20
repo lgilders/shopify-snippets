@@ -1,0 +1,83 @@
+// Colors and styles require updates to match design
+#secondary-nav {
+    display: none;
+    position: relative;
+    top: 0;
+    width: 100%;
+    z-index: 20;
+
+    ul {
+        position: relative;
+        max-width: 1050px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+
+        @media (max-width: 550px) {
+            margin: 0;
+            justify-content: left;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            -ms-overflow-style: -ms-autohiding-scrollbar;
+        }
+    }
+
+    ul:-webkit-scrollbar { display: none; }
+
+    li {
+        flex: auto;
+        padding: 15px 0;
+        border-right: 1px solid black;
+        text-align: center;
+        transition: all ease-in-out 0.3s;
+        cursor: pointer;
+
+        @media (max-width: $bp-small) {
+            flex: 0 0 auto;
+            border: none !important;
+            padding: 15px 10px;
+        }
+
+        &:first-of-type { border-left: 1px solid black; }
+
+        &:hover {
+            a {
+                color: magenta;
+            }
+        }
+
+        a {
+            font-family: $font--poppins !important;
+            font-weight: 400;
+            font-size: 14px;
+            color: black;
+            letter-spacing: 1px;
+            text-align: center;
+            line-height: 20px;
+            text-transform: uppercase;
+            transition: all ease-in-out 0.3s;
+            cursor: pointer;
+
+            @media (max-width: $bp-small) {
+                font-size: 12px;
+                line-height: 20px;
+            }
+        }
+    }
+
+    li.current {
+        background-color: lightgray;
+
+        a { color: magenta; }
+    }
+}
+
+#product-subnav.fixed {
+    display: block;
+    position: fixed;
+}
