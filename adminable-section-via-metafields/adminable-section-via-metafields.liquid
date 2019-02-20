@@ -1,0 +1,42 @@
+{%- assign section_namespace = product.metafields.section_namespace -%} {% comment %} Update section_namespace to reflects namespace used. Update associated page. {% endcomment %}
+{%- assign count = 7 -%} {% comment %} Update variable to the maximum number of viable options. {% endcomment %}
+
+{% if section_namespace.headline %} {% comment %} Section is only displayed if a headline is available. {% endcomment %}
+<section>
+    <h3>{{ section_namespace.headline }}</h3>
+
+    <div class="contents"> {% comment %} Section designed as a FAQ, with Q/A toggle behavior. {% endcomment %}
+        {% for i in (1..count) %}
+            {%- assign question = 'question' | append: i -%}
+            {%- assign answer = 'answer' | append: i -%}
+            
+            {% if section_namespace[question] %}            
+            <div class="toggle">
+                <div class="toggle-title clearfix">
+                    <h4 class="title-name"><span>{{ section_namespace[question] }}</span><i></i></h4>
+                </div>
+                <div class="toggle-inner">
+                    <p>{{ section_namespace[answer] }}</p>
+                </div>
+            </div>
+            {% endif %}
+
+        {% endfor %} 
+    </div>
+</section>
+{% endif %}
+
+<script>
+if( $('.toggle .toggle-title').hasClass('active') ) {
+    $('.toggle .toggle-title.active').closest('.toggle').find('.toggle-inner').show();
+}
+
+$('.toggle .toggle-title').click(function () {
+    if( $(this).hasClass('active') ){
+        $(this).removeClass('active').closest('.toggle').find('.toggle-inner').slideUp(200);
+    }
+    else{
+        $(this).addClass('active').closest('.toggle').find('.toggle-inner').slideDown(200);
+    }
+});
+</script>
