@@ -55,3 +55,18 @@ This script provides an example of a slider that initializes at mobile resolutio
 
 ### Featured Products Managed via Metafields
 Because the new Sections only work for the Homepage, this snippet allows for metafield-adminable content on other pages, such as blog articles or collection list pages.
+
+### Adminable Section Via Metafields
+Because the new Sections only work for the Homepage, this snippet allows for metafield-adminable content on other pages, such as product pages, when the content is variable.
+
+### FAQs Section
+Because the new Sections only work for the Homepage, this snippet allows for a metafield-adminable section to display toggleable items as a FAQs example.
+
+### Secondary Sticky Navigation
+This snippet was built to display a secondary nav that appears at a certain position, disappears at a certain position, and highlights available sections while scrolling or on click. See this [documentation](https://github.com/davist11/jQuery-One-Page-Nav) for more information.
+
+### Logo/Image Section
+Built for use on the Homepage, this adminable section displays a selection of images in a slider at mobile resolutions. See this [documentation](http://kenwheeler.github.io/slick/) for more information. 
+
+### Back-to-Top Button
+Add a back-to-top button on each page to enable users to return to the top of page wherever they are on any given page.
