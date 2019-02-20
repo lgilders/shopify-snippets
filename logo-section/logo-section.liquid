@@ -1,0 +1,42 @@
+<div id="logo-section">
+  <div id="logo-carousel">
+    {% for block in section.blocks %}
+    <div class="logo">
+      <img src="{{ block.settings.logo | img_url: 'master' }}" alt="{{ block.settings.logo_alt_text }}" />
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Logo Section",
+  "class": "index-section section-flush",
+  "max_blocks": 7,
+  "settings": [],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo"
+      },
+      {
+        "type": "text",
+        "id": "logo_alt_text",
+        "label": "Logo Alt Text"
+      }
+    ]
+  }
+  ],
+  "presets": [
+    {
+    "name": "Logo Section",
+    "category": "Index"
+    }
+  ]
+  }
+{% endschema %}

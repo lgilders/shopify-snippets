@@ -1,0 +1,50 @@
+#logo-section {
+    height: 120px;
+    position: relative;
+
+    @media (max-width: $bp-medium) { height: 120px; }
+
+    #logo-carousel {
+        -ms-flex-wrap: wrap;
+        -ms-flex-direction: column;
+        -webkit-flex-flow: row wrap;
+        flex-flow: row wrap;
+        display: -ms-flexbox;
+        display: -webkit-box;
+        display: flex;
+        line-height: 120px;
+        padding: 0 20px;
+
+        @media (max-width: $bp-medium) { padding: 0; }
+
+        .logo {
+            -webkit-box-flex: auto;
+            -ms-flex: auto;
+            flex: auto;
+            text-align: center;
+
+            img {
+                vertical-align: middle;
+                margin: 0 auto;
+            }
+        }
+
+
+        .slick-list { top: 30px; }
+
+        .slick-track {
+            display: -ms-flexbox;
+            display: -webkit-box;
+            display: flex;
+        
+            .slick-slide {
+                display: -ms-flexbox;
+                display: -webkit-box;
+                display: flex;
+                height: auto;
+                align-items: center; //optional
+                justify-content: center; //optional
+            }
+        }
+    }
+}
