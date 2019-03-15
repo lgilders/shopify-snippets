@@ -1,0 +1,120 @@
+{% comment %}
+
+  Takes the following arguments:
+
+  - product: The product that will be used
+
+{% endcomment %}
+{% assign option_index = 0 %}
+{% assign option_position= 'option-0' %}
+{% assign colors_value = nil %}
+{% assign sizes_value = nil %}
+
+{% for p_option in product.options_with_values %}
+    {% assign downcased_option = p_option.name | downcase %}
+    {% if downcased_option == 'color' %}
+        {% assign color_option= 'option-' | append: forloop.index %}
+        {% assign colors_value = colors_value | concat: p_option.values | uniq %}
+        {% assign option_index = forloop.index0 %}
+        {% assign option_position= 'option-' | append: forloop.index %}
+    {% elsif downcased_option == 'size' %}
+        {% assign size_option= 'option-' | append: forloop.index %}
+        {% assign sizes_value = sizes_value | concat: p_option.values | uniq  %}
+    {% endif %}
+{% endfor %}
+
+{% if colors_value.size > 0 %}
+    {% assign colors_tags = colors_value | join: ',' | downcase | escape %}
+{% endif %}
+{% if sizes_value.size > 0 %}
+    {% assign sizes_tags = sizes_value | join: ',' | downcase | escape %}
+{% endif %}
+{% if product.tags.size > 0 %}
+    {% assign product_tags = product.tags | join: ',' | downcase | escape %}
+{% endif %}
+{% assign product_tags = nil %}
+{% for t in product.tags %}
+    {% assign tag = t | strip | downcase %}
+    {% if filter_tags contains tag %}
+        {% unless forloop.first %}
+            {% assign product_tags = product_tags | append: ',' %}
+        {% endunless %}
+        {% assign product_tags = product_tags | append: tag %}
+    {% endif %}
+{% endfor %}
+
+<div class="column l3 m6 s6 product-item" colors-tags="{{colors_tags}}" sizes-tags="{{sizes_tags}}" product-tags="{{product_tags}}">
+    {% assign product_image = product.selected_or_first_available_variant.image %}
+    
+    {% unless product_image %}
+        {% assign product_image = product.featured_image %}
+    {% endunless %}
+    {% if product.featured_image != blank %}
+        {% assign secondary_image = '' %}
+        {% if product.images.size > 1 %}
+            {% assign secondary_image = product.images.last | img_url: 'x438' %}
+        {% endif %}
+        <a class="product-image" 
+            href="{{ product.url | within: collection }}"
+            data-primary-image="{{ product.featured_image | img_url: 'x438' }}"
+            data-secondary-image="{{secondary_image}}">
+            <span class="variant_image"></span>
+        <img class="featured-image{% if product.images.size > 1 %} has-secondary{% endif %}"
+            src="{{ product.featured_image | img_url: 'x438' }}"
+            alt="{{ product.title | escape }}">
+        </a>
+    {% endif %}
+    <h3 class="product-title">
+        <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
+    </h3>
+    <p class="product-price {% if product.compare_at_price > product.price %}sale-price{% endif %}">
+        {%- if product.compare_at_price > product.price -%}
+            {%- if product.price_varies -%}
+                {%- assign sale_price = product.price | money -%}
+                {{ sale_price }}
+            {%- else -%}
+                {{ product.price | money }}
+            {%- endif -%}
+        {%- else -%}
+            {% if product.price_varies %}
+                {%- assign price = product.price | money -%}
+                {{ 'products.product.from_text_html' | t: price: price }}
+            {%- else -%}
+                {{ product.price | money }}
+            {%- endif -%}
+        {%- endif -%}
+        {% if product.compare_at_price > product.price %}
+            <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
+            <s>{{ product.compare_at_price | money }}</s>
+            <span class="visually-hidden sale-notice">{{ 'products.product.sale_notice' | t }}</span>
+        {% endif %}
+        
+    </p>
+    
+    {% unless product.has_only_default_variant %}
+        <div class="product-swatches" data-option-index="{{ option_index }}">
+        {% assign values = '' %}
+        {% for variant in product.variants %}
+            {% assign value = variant.options[option_index] %}
+            {% unless values contains value %}
+                {% assign values = values | join: ',' %}
+                {% assign values = values | append: ',' | append: value %} 
+                {% assign values = values | split: ',' %}
+                <input type="radio"
+                    {% if forloop.first %} checked="checked"{% endif %}
+                    {% unless variant.available %} disabled="disabled"{% endunless %}
+                    value="{{ value | escape }}"
+                    data-img-src="{% if variant.image %}{{ variant.image | img_url: 'x438' }}{% endif %}"
+                    data-index="{{ option_position }}"
+                    name="{{ option_position | append: product.id | handleize }}"
+                    class="single-option-selector__radio{% unless variant.available %} disabled{% endunless %}"
+                    id="ProductSelect-option-{{ value | append: product.id | handleize }}">
+                <label for="ProductSelect-option-{{ value | append: product.id | handleize }}" class="{% if variant.available %}available{% else %}disabled soldout{% endif %}">
+                    <span><img src="{{ value | handle | append: '.' | append: 'png' | asset_url }}" /></span>
+                </label>
+            {% endunless %}
+        {% endfor %}
+        </div>
+    {% endunless %}
+
+</div>

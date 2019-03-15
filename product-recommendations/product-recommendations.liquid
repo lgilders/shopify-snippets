@@ -1,0 +1,130 @@
+{% if section.settings.show_product_recommendations == true %}
+<section id="product-recommendations" class="clearfix">
+    <div class="product-template__container page-width" itemscope itemtype="http://schema.org/Product" id="ProductSection-{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="product" data-enable-history-state="true">
+
+    {% comment %}
+    Heading.
+    Leave blank if you don't need one.
+    {% endcomment %}
+
+    {% assign heading = section.settings.recommended_title %}
+
+    {% comment %}
+    Set either or both to true, if you want
+    to limit yourself to items with same vendor, and/or type.
+    {% endcomment %}
+
+    {% assign same_vendor = false %}
+    {% assign same_type = false %}
+
+    {% comment %}
+    Collections to ignore.
+    Never pick related items from those.
+    {% endcomment %}
+    {% assign exclusions = 'frontpage,all' | split: ',' %}
+
+    {% comment %}
+    Looking for a relevant collection. Update with the theme's correct metafield reference.
+    {% endcomment %}
+    {% if product.metafields["global"]["Recommended_Products"] %}
+        {% assign collection = collections[ product.metafields["global"]["Recommended_Products"] ] %} 
+    {% endif %}
+
+    {% assign found_a_collection = false %}
+    {% if collection and collection.all_products_count > 1 %}
+        {% unless exclusions contains collection.handle %}
+            {% assign found_a_collection = true %}
+        {% endunless %}
+    {% endif %}
+    
+    {% unless found_a_collection %}
+        {% for c in product.collections %}
+            {% unless exclusions contains c.handle or c.all_products_count < 2 %}
+                {% assign found_a_collection = true %}
+                {% assign collection = c %}
+                {% break %}
+            {% endunless %}
+        {% endfor %}
+    {% endunless %}
+
+    {% comment %}
+    If we have a relevant collection.
+    {% endcomment %}
+    {% if found_a_collection %}
+
+    {% assign counter = 0 %}
+    {% assign break_at = 4 %} {% comment %} number of products to display {% endcomment %}
+    {% assign current_product = product %}
+
+    {% comment %} determine random start based on collection contents {% endcomment %}
+    {% assign min = 1 %}
+    {% assign max = collection.products_count | minus: 5 %}
+    {% assign diff = max | minus: min %}
+    {% assign randomNumber = "now" | date: "%N" | modulo: diff | plus: min %}
+
+    {% capture recommended_items %}
+        {% for product in collection.products offset:randomNumber %}
+
+        {% unless product.handle == current_product.handle %}
+        {% unless same_vendor and current_product.vendor != product.vendor %}
+        {% unless same_type and current_product.type != product.type %}
+        
+        {% comment %} Use theme's product-grid-item, or related snippet, to display product {% endcomment %}
+        {% include 'product-grid-item-recommendations' %}
+
+        {% assign counter = counter | plus: 1 %}
+        
+        {% if counter == break_at %}
+            {% break %}
+        {% endif %}
+        {% endunless %}
+        {% endunless %}
+        {% endunless %}
+
+        {% endfor %}
+    {% endcapture %}
+
+    {% assign recommended_items = recommended_items | trim %}
+
+    {% unless recommended_items == blank %}
+
+    <aside class="grid">
+        <div class="grid__item">
+        {% unless heading == blank %}
+        <header class="section-header">
+            <h2 class="section-header__title">{{ heading }}</h2>
+        </header>
+        {% endunless %}
+        <div class="grid-uniform">
+            {{ recommended_items }}
+        </div>
+        </div>
+    </aside>
+
+    {% endunless %}
+        
+    {% endif %}
+    
+    </div>
+</section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Product Recommendations",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_product_recommendations",
+      "label": "Show recommended products",
+      "default": false
+    },
+    {
+      "id": "recommended_title",
+      "type": "text",
+      "label": "Section title",
+      "default": "You Might Also Like"
+    }
+  ]
+}
+{% endschema %}

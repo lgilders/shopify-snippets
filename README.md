@@ -70,3 +70,6 @@ Built for use on the Homepage, this adminable section displays a selection of im
 
 ### Back-to-Top Button
 Add a back-to-top button on each page to enable users to return to the top of page wherever they are on any given page.
+
+### Product Recommendations
+Add a section to each product page to display a random group of related products. See this [documentation](https://help.shopify.com/en/themes/customization/products/features/recommend-related-products#edit-your-theme-code-to-recommend-products-sectioned-themes-specific) for more information.
