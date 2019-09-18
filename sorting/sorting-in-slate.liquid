@@ -1,0 +1,58 @@
+<div id="sort-by-container" class="plp-sorting"></div>
+    
+<script>
+  const currentURL = new URL(window.location);
+  const currentParams = currentURL.searchParams.get('sort_by');
+  const urlSearchParams = new URLSearchParams(
+      window.location.search.indexOf('sort_by') > -1
+      ? window.location.search.replace(/sort_by/gi, '')
+      : window.location.search,
+  );
+
+  const render = function(template, node) {
+    node.innerHTML = template;
+
+    node.querySelector('#sort-by').addEventListener('change', function() {
+      urlSearchParams.set(this.name, this.value);
+      window.location = `?sort_by${urlSearchParams}`;
+    });
+  };
+
+  const SortOptions = [{
+    label: 'Featured',
+    value: 'manual',
+  }, {
+    label: 'Price: Low to High',
+    value: 'price-ascending',
+  }, {
+    label: 'Price: High to Low',
+    value: 'price-descending',
+  }, {
+    label: 'A-Z',
+    value: 'title-ascending',
+  }, {
+    label: 'Z-A',
+    value: 'title-descending',
+  }, {
+    label: 'Oldest to Newest',
+    value: 'created-ascending',
+  }, {
+    label: 'Newest to Oldest',
+    value: 'created-descending',
+  }, {
+    label: 'Best Selling',
+    value: 'best-selling',
+  }];
+
+  const template = `
+  <div>
+      <label for="sort-by">Sort by</label> 
+      <select id="sort-by">
+      ${SortOptions.map((item) =>
+          `<option value="${item.value}" ${currentParams === item.value ? 'selected' : ''}>${item.label}</option>`).join('')}
+      </select>
+  </div>
+  `;
+
+  render(template, document.querySelector('#sort-by-container'));
+</script>
