@@ -15,30 +15,32 @@
   }
 
   function loadMoreProducts() {
-    let pagination = $('.collection-grid .pagination').last();
-    let loadButton = $('.collection-grid .load-more-button').last();
-    let paginationURL = $('a.load-more-button').last().attr('href');
-    let loadingIcon = $('.loading-icon').last();
+    const $pagination = $('.pagination').last();
+    const $loadButton = $('a.load-more-button').last();
+    const paginationURL = $('a.load-more-button').last().attr('href');
+    const $loadingIcon = $('.loading-icon').last();
 
-    if (loadButton.length > 0 && loadButton.css('display') != 'none') {
+    if ($loadButton.length > 0 && $loadButton.css('display') !== 'none') {
       $.ajax({
         type: 'GET',
         url: paginationURL,
         beforeSend: () => {
-          loadButton.remove();
-          loadingIcon.show();
+          $loadButton.remove();
+          $loadingIcon.show();
         },
         success: (data) => {
-          let currentProducts = $('.product-list');
-          let nextProducts = $(data).find('.product-list');
+          const $currentProducts = $('.product-list'); // Add class to product collection wrapper
+          const $nextProducts = $(data).find('.product-list');
+          const $nextLoadButton = $(data).find('a.load-more-button');
 
-          currentProducts.append(nextProducts);
+          $currentProducts.append($nextProducts);
           $('.product-list .product-list .product').unwrap();
-          loadingIcon.remove();
-          pagination.remove();
+          $loadingIcon.remove();
+          $pagination.remove();
+          $currentProducts.append($nextLoadButton);
           attachLoadMore();
         },
-        dataType: 'html'
+        dataType: 'html',
       });
     }
   }
