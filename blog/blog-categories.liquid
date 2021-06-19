@@ -21,6 +21,7 @@
     </select>
 </div>
 
+{% comment %} jQuery Script Version {% endcomment %}
 <script>
 var loadScript = function(url, callback){
   var script = document.createElement("script")
@@ -63,4 +64,21 @@ if ((typeof jQuery === 'undefined') || (parseFloat(jQuery.fn.jquery) < 1.7)) {
 } else {
   blogFilters(jQuery);
 }
+</script>
+
+{% comment %} Vanilla JS Script Version {% endcomment %}
+<script>
+const blogFilters = function() {
+    document.getElementById('blog-categories-filter').addEventListener('change', (event) => {
+        let url = event.target.value
+        if (url) {
+            window.location = url
+        }
+        return false
+    })
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    blogFilters()
+});
 </script>
